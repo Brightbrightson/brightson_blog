@@ -17,6 +17,10 @@ const PostDetail = ({post}) => {
       if (obj.underline) {
         modifiedText = <u key={index}>{text}</u>;
       }
+
+      if (obj.code) {
+        modifiedText = <u key={index}>{text}</u>;
+      }
     }
 
     switch (type) {
@@ -44,6 +48,7 @@ const PostDetail = ({post}) => {
             ))}
           </h4>
         );
+
       case "image":
         return (
           <img
@@ -54,6 +59,18 @@ const PostDetail = ({post}) => {
             src={obj.src}
           />
         );
+      case "a":
+        return (
+          <a
+            href={href}
+            target={openInNewTab ? "_blank" : "_self"}
+            rel={rel || "noopener noreferrer"}
+            {...rest}
+          >
+            {children}
+          </a>
+        );
+
       default:
         return modifiedText;
     }
@@ -77,7 +94,7 @@ const PostDetail = ({post}) => {
               className="align-middle rounded-full"
               src={post.author.photo.url}
             />
-            <p className="inline align-middle text-gray-700 ml-2 text-lg">
+            <p className="inline align-middle text-gray-700 ml-2 text-lg md:text-xs">
               {post.author.name}
             </p>
           </div>
@@ -99,7 +116,7 @@ const PostDetail = ({post}) => {
             <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
           </div>
         </div>
-        <h1 className="mb-8 text-3x1 font-semibold">{post.title}</h1>
+        <h1 className="mb-8 text-2x1 font-semibold">{post.title}</h1>
         {post.content.raw.children.map((typeObj, index) => {
           const children = typeObj.children.map((item, itemIndex) =>
             getContentFragment(itemIndex, item.text, item)

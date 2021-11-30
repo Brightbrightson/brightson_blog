@@ -13,8 +13,8 @@ const PostCard = ({post}) => {
         />
       </div>
       <h1
-        className="transition duration-700 text-center mb-8 cursor-pointer 
-        hover:text-pink-600 text-3xl font-semibold"
+        className="transition duration-700 text-sm text-center lg:text-2xl   mb-8 cursor-pointer  
+        hover:text-pink-600 font-semibold"
       >
         <Link href={`/post/${post.slug}`}>{post.title}</Link>
       </h1>
@@ -27,7 +27,7 @@ const PostCard = ({post}) => {
             className="align-middle rounded-full"
             src={post.author.photo.url}
           />
-          <p className="inline align-middle text-gray-700 ml-2 text-lg">
+          <p className="inline align-middle text-gray-700 ml-2 text-xs">
             {post.author.name}
           </p>
         </div>
@@ -49,12 +49,12 @@ const PostCard = ({post}) => {
           <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
         </div>
       </div>
-      <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
+      <p className="text-center text-sm  text-gray-700 font-normal px-4 lg:px-20 mb-8 lg:text-lg">
         {post.excerpt}
       </p>
       <div className="text-center">
         <Link href={`/post/${post.slug}`}>
-          <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-blue-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
+          <span className="transition duration-500 transform hover:-translate-y-1 inline-block bg-blue-600 text-sm font-medium rounded-full text-white px-8 py-3 lg:text-lg cursor-pointer">
             Continue Reading
           </span>
         </Link>

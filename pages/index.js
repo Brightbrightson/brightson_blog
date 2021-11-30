@@ -12,11 +12,11 @@ export default function Home({posts}) {
     <div className="container mx-auto px-10 mb-8 ">
       <Head>
         <title>BOB Blog</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.png"></link>
       </Head>
       <FeaturedPosts />
       <div className="flex flex-col lg:flex-row w-full justify-center gap-3">
-        <div className=" grid grid-cols-1  gap-12 p-4 m-5">
+        <div className=" grid grid-cols-1 gap-12">
           <div className="lg:col-span-8 col-span-1">
             {posts
               .map((post) => <PostCard post={post.node} key={post.title} />)
