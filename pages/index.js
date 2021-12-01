@@ -18,9 +18,9 @@ export default function Home({posts}) {
       <div className="flex flex-col lg:flex-row w-full justify-center gap-3">
         <div className=" grid grid-cols-1 gap-12">
           <div className="lg:col-span-8 col-span-1">
-            {posts.map((post, index) => (
-              <PostCard key={index} post={post.node} />
-            ))}
+            {posts
+              .map((post, index) => <PostCard key={index} post={post.node} />)
+              .reverse()}
           </div>
         </div>
         <div className=" lg:col-span-4 col-span-1 max-w-6xl ">
