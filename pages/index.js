@@ -2,12 +2,18 @@ import Head from "next/head";
 import {PostCard, Categories, PostWidget} from "../components";
 import {getPosts} from "../services";
 import {FeaturedPosts} from "../sections";
+import {useRouter} from "next/router";
 
 // flex  justify-between
 // container mx-auto px-10 mb-8
 // grid grid-cols-1 lg:grid-cols-12 gap-12
 // lg:col-span-4 col-span-1 flex flex-col lg:flex-row w-full justify-center gap-7
 export default function Home({posts}) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
   return (
     <div className="container mx-auto px-10 mb-8 ">
       <Head>
@@ -19,7 +25,7 @@ export default function Home({posts}) {
         <div className=" grid grid-cols-1 gap-12">
           <div className="lg:col-span-8 col-span-1">
             {posts
-              .map((post, index) => <PostCard key={index} post={post.node} />)
+              .map((post) => <PostCard post={post.node} key={post.title} />)
               .reverse()}
           </div>
         </div>
@@ -34,11 +40,10 @@ export default function Home({posts}) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = (await getPosts()) || [];
 
   return {
-    props: {posts: posts},
+    props: {posts},
   };
-  revalidate: 1;
 }
